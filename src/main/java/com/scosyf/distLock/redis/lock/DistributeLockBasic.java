@@ -107,6 +107,7 @@ public class DistributeLockBasic {
         
         // 如果setnx返回true表示直接加锁成功
         if (cacheManager.setnx(lockKey, newLockTime)) {
+            cacheManager.expire(lockKey, LOCK_EXPIRE_TIME);
             return true;
         }
 
